@@ -1,18 +1,19 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Container from "../Container";
+// import MenuDropdown from "./MenuDropDown";
 
 
 const Navbar = () => {
 
     const navLinks = <>
         <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink >Apartment</NavLink></li>
-        <li><NavLink >Home</NavLink></li>
+        <li><Link >Apartment</Link></li>
+        <li><Link >Home</Link></li>
     </>
 
     return (
         <Container>
-            <div className="navbar bg-base-100">
+            <div className="navbar bg-neutral-600 text-white">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -33,7 +34,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Button</a>
+                    {/* <MenuDropdown></MenuDropdown> */}
                 </div>
             </div>
         </Container>
