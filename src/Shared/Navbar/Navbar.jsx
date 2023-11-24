@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import Container from "../Container";
+
 import MenuDropdown from "./MenuDropDown";
 import useAuth from "../../Components/hooks/useAuth";
 
@@ -15,8 +15,8 @@ const Navbar = () => {
     </>
 
     return (
-        <Container>
-            <div className="navbar bg-neutral-600 text-white">
+        
+            <div className="navbar bg-neutral-500 fixed z-10 mb-2 px-10 text-white">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -27,8 +27,8 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <a className="cursor-pointer"><div className="flex items-center">
-                        <img className="w-24 h-16" src="/public/logo11.png" alt="" />
-                        <h1 className="text-xl hidden md:block">West Cot</h1>
+                        <img  src="/public/logo11.png" alt="" />
+                        <h1 className="text-2xl font-rancho ml-1 hidden md:block">West Cot</h1>
                     </div></a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
@@ -45,7 +45,6 @@ const Navbar = () => {
                     }
                 </div>
             </div>
-        </Container>
     );
 };
 
