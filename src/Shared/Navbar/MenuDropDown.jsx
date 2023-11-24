@@ -1,7 +1,7 @@
 import { AiOutlineMenu } from 'react-icons/ai'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import avatarImg from '../../../assets/images/placeholder.jpg'
+import avatarImg from '../../assets/Login/Avatar.png'
 import useAuth from '../../Components/hooks/useAuth'
 
 const MenuDropdown = () => {
@@ -13,14 +13,14 @@ const MenuDropdown = () => {
   }
 
   return (
-    <div className='relative'>
-      <div className='flex flex-row items-center gap-3'>
+    <div className='relative z-10'>
+      <div className='flex flex-row items-center text-black gap-3'>
         {/* Become A Host btn */}
-        <div className='hidden md:block'>
+        {/* <div className='hidden md:block'>
           <button className='disabled:cursor-not-allowed cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full  transition'>
             Host your home
           </button>
-        </div>
+        </div> */}
         {/* Dropdown btn */}
         <div
           onClick={() => setIsOpen(!isOpen)}
@@ -42,7 +42,7 @@ const MenuDropdown = () => {
 
       </div>
       {isOpen && (
-        <div className='absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm'>
+        <div className='absolute rounded-xl text-black shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm'>
           <div className='flex flex-col cursor-pointer'>
             <Link
               to='/'

@@ -1,10 +1,13 @@
 import { Link, NavLink } from "react-router-dom";
 import Container from "../Container";
-// import MenuDropdown from "./MenuDropDown";
+import MenuDropdown from "./MenuDropDown";
+import useAuth from "../../Components/hooks/useAuth";
 
 
 const Navbar = () => {
 
+    const { user } = useAuth()
+    console.log(user)
     const navLinks = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><Link >Apartment</Link></li>
@@ -24,9 +27,9 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <a className="cursor-pointer"><div className="flex items-center">
-                    <img className="w-24 h-16" src="/public/logo11.png" alt="" />
-                    <h1 className="text-xl hidden md:block">West Cot</h1>
-                        </div></a>
+                        <img className="w-24 h-16" src="/public/logo11.png" alt="" />
+                        <h1 className="text-xl hidden md:block">West Cot</h1>
+                    </div></a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -34,7 +37,12 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    {/* <MenuDropdown></MenuDropdown> */}
+                    {
+                        user ? <MenuDropdown></MenuDropdown> :
+                            <Link to="/login">
+                                Login
+                            </Link>
+                    }
                 </div>
             </div>
         </Container>
