@@ -1,7 +1,7 @@
-import slider1 from '../../../assets/Slider/1.png'
+import slider1 from '../../../assets/Slider/8.jpg'
 import slider2 from '../../../assets/Slider/14.jpg'
 import slider3 from '../../../assets/Slider/2.jpg'
-import slider4 from '../../../assets/Slider/8.jpg'
+import slider4 from '../../../assets/Slider/1.png'
 
 const Banner = () => {
     return (
