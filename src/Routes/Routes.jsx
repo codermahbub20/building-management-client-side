@@ -4,6 +4,7 @@ import Home from "../Pages/Home/Home/Home";
 import SignUp from "../Pages/SignUp/SignUp";
 import LogIn from "../Pages/LogIn/LogIn";
 import Apartment from "../Pages/ApartMent/Apartment";
+import DashboardLayout from "../Layouts/DashboardLayout";
 
 
  export const router = createBrowserRouter([
@@ -31,6 +32,7 @@ import Apartment from "../Pages/ApartMent/Apartment";
       element: <LogIn></LogIn>
     },
     {
-      path:"/dashboard"
+      path:"/dashboard",
+      element: <DashboardLayout></DashboardLayout>
     }
   ]);
