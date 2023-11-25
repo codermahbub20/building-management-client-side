@@ -11,6 +11,7 @@ const Apartment = () => {
     // const [apartments] = useApartments();
     console.log(apartments)
 
+    // paginatoin related code start from here
     const { count } = useLoaderData()
     console.log(count)
 
@@ -68,7 +69,7 @@ const Apartment = () => {
                 }
             </div>
 
-            <div className="w-1/2 gap-2 mx-auto text-center">
+            <div className="w-1/2 gap-2 mt-5 mx-auto text-center">
                 <button onClick={handlePrevPage} className="btn btn-sm">Prev</button>
                 {
                     pages.map(page => <button
