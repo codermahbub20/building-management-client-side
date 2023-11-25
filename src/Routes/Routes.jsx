@@ -3,6 +3,7 @@ import Main from "../Layouts/Main/Main";
 import Home from "../Pages/Home/Home/Home";
 import SignUp from "../Pages/SignUp/SignUp";
 import LogIn from "../Pages/LogIn/LogIn";
+import Apartment from "../Pages/ApartMent/Apartment";
 
 
  export const router = createBrowserRouter([
@@ -13,6 +14,11 @@ import LogIn from "../Pages/LogIn/LogIn";
         {
             path: "/",
             element: <Home></Home>
+        },
+        {
+          path: "apartment",
+          element: <Apartment></Apartment>,
+          loader: () => fetch(`http://localhost:5000/apartmentsCount`)
         }
       ]
     },

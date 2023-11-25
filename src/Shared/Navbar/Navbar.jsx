@@ -10,13 +10,13 @@ const Navbar = () => {
     console.log(user)
     const navLinks = <>
         <li><NavLink to="/">Home</NavLink></li>
-        <li><Link >Apartment</Link></li>
+        <li><Link to="apartment">Apartment</Link></li>
         <li><Link >Home</Link></li>
     </>
 
     return (
         
-            <div className="navbar bg-neutral-500 fixed z-10 mb-2 px-10 text-white">
+            <div className="navbar bg-neutral-500 text-black md:fixed md:z-10 mb:mb-2 px-10 lg:text-white">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">

@@ -11,6 +11,7 @@ const Home = () => {
                 <Banner></Banner>
                 <About></About>
                 {/* <GoogleMap></GoogleMap> */}
+                
             </div>
         
     );
