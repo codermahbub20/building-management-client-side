@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-
+import * as dateFns from 'https://cdn.jsdelivr.net/npm/date-fns/+esm';
 import Swal from "sweetalert2";
 import useAuth from "../../Components/hooks/useAuth";
 import useAxiosSecure from "../../Components/hooks/useAxiosSecure";
@@ -13,13 +13,19 @@ const Card = ({ apartment }) => {
     console.log(user)
     const axiosSecure = useAxiosSecure()
 
+    const today = new Date();
+    const formattedDate1 = dateFns.format(today, 'dd MMMM yyyy');
+    // console.log(formattedDate1);
+
     const agreementData = {
         userName: user?.displayName,
         userEmail: user?.email,
         floor_no,
         block_name,
         apartment_no,
+        agreement_date: formattedDate1,
         rent,
+        room_no: Math.floor((Math.random() * 40) + 20),
         status: 'pending'
     }
 
@@ -46,7 +52,7 @@ const Card = ({ apartment }) => {
         <div>
 
 
-            <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div className="max-w-sm bg-white border  border-black rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
                     <img className="rounded-t-lg h-[300px] w-full" src={apartment_image} alt="" />
                 </a>

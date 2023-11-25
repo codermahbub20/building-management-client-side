@@ -29,5 +29,8 @@ import Apartment from "../Pages/ApartMent/Apartment";
     {
       path: "/login",
       element: <LogIn></LogIn>
+    },
+    {
+      path:"/dashboard"
     }
   ]);

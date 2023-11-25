@@ -4,15 +4,19 @@ import { FcGoogle } from "react-icons/fc";
 
 // import { getToken, saveUser } from '../../components/api/auth';
 import toast from 'react-hot-toast';
-import { TbFidgetSpinner } from "react-icons/tb";
+// import { TbFidgetSpinner } from "react-icons/tb";
 import { imageUpload } from '../../Components/api/utils';
 import useAuth from '../../Components/hooks/useAuth';
+import { saveUser } from '../../Components/hooks/saveUser';
+
+
 
 const SignUp = () => {
 
   const { createUser, signInWithGoogle, updateUserProfile, loading } = useAuth()
 
   const navigate = useNavigate()
+
 
   const handleSignUp = async e => {
     e.preventDefault();
@@ -21,6 +25,7 @@ const SignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     const image = form.image.files[0];
+
 
     try {
       //1. Upload Image
@@ -34,14 +39,14 @@ const SignUp = () => {
       console.log(result)
 
       //4. save user data in database
-    //   const dbResponse = await saveUser(result?.user)
-    //   console.log(dbResponse)
-    //   // result.user.email
+      const dbResponse = await saveUser(result?.user)
+      console.log(dbResponse)
+      // result.user.email
 
-    //   //  token related
-    //   await getToken(result?.user?.email)
-    //   navigate('/')
-    //   toast.success('SignUp Successful')
+      //  token related
+      // await getToken(result?.user?.email)
+      // navigate('/')
+      // toast.success('SignUp Successful')
 
 
     } catch (err) {
@@ -49,23 +54,23 @@ const SignUp = () => {
       toast.error(err?.message)
     }
   }
-
-  const handleGoogleSignIn = async () =>{
+  // 
+  const handleGoogleSignIn = async () => {
     try {
-    
+
       //2. User Registration
       const result = await signInWithGoogle()
       console.log(result)
 
       //4. save user data in database
-    //   const dbResponse = await saveUser(result?.user)
-    //   console.log(dbResponse)
-      // result.user.email
+      const dbResponse = await saveUser(result?.user)
+      console.log(dbResponse)
+      result.user.email
 
-    //   //  token related
-    //   await getToken(result?.user?.email)
-    //   navigate('/')
-    //   toast.success('SignUp Successful')
+      //   //  token related
+      //   await getToken(result?.user?.email)
+      //   navigate('/')
+      //   toast.success('SignUp Successful')
 
 
     } catch (err) {

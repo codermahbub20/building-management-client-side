@@ -2,6 +2,7 @@ import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import useAuth from "../../Components/hooks/useAuth";
+import { saveUser } from "../../Components/hooks/saveUser";
 
 
 const LogIn = () => {
@@ -20,9 +21,9 @@ const LogIn = () => {
             const result = await signIn(email, password)
             console.log(result)
             //4. save user data in database
-            // const dbResponse = await saveUser(result?.user)
-            // console.log(dbResponse)
-            // result.user.email
+            const dbResponse = await saveUser(result?.user)
+            console.log(dbResponse)
+            result.user.email
 
             //  token related
             // await getToken(result?.user?.email)
@@ -45,9 +46,9 @@ const LogIn = () => {
           const result = await signInWithGoogle()
             console.log(result)
           //4. save user data in database
-        //   const dbResponse = await saveUser(result?.user)
-        //   console.log(dbResponse)
-          // result.user.email
+          const dbResponse = await saveUser(result?.user)
+          console.log(dbResponse)
+          result.user.email
     
           //  token related
         //   await getToken(result?.user?.email)
