@@ -9,3 +9,8 @@ export const imageUpload = async image =>{
       console.log(data)
     return data;
 }
+
+export const getRole = async (email) =>{
+  const {data} = await axios.get(`http://localhost:5000/users/${email}`)
+  return data.role;
+}

@@ -1,14 +1,14 @@
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 import useAuth from "../../Components/hooks/useAuth";
 import { saveUser } from "../../Components/hooks/saveUser";
 
 
 const LogIn = () => {
 
-    const { signIn, signInWithGoogle,  loading } = useAuth()
-
+    const { signIn, signInWithGoogle, loading } = useAuth()
+    const navigate = useNavigate()
     const handleLogIn = async e => {
 
         e.preventDefault();
@@ -24,11 +24,8 @@ const LogIn = () => {
             const dbResponse = await saveUser(result?.user)
             console.log(dbResponse)
             result.user.email
-
-            //  token related
-            // await getToken(result?.user?.email)
-            // navigate('/')
-            // toast.success('SignUp Successful')
+            navigate("/")
+            toast.success('SignUp Successful')
 
 
         } catch (err) {
@@ -41,27 +38,24 @@ const LogIn = () => {
 
     const handleGoogleSignIn = async () => {
         try {
-    
-          //2. User Registration
-          const result = await signInWithGoogle()
+
+            //2. User Registration
+            const result = await signInWithGoogle()
             console.log(result)
-          //4. save user data in database
-          const dbResponse = await saveUser(result?.user)
-          console.log(dbResponse)
-          result.user.email
-    
-          //  token related
-        //   await getToken(result?.user?.email)
-        //   navigate('/')
-        //   toast.success('SignUp Successful')
-    
-    
+            //4. save user data in database
+            const dbResponse = await saveUser(result?.user)
+            console.log(dbResponse)
+            result.user.email
+              navigate('/')
+              toast.success('SignUp Successful')
+
+
         } catch (err) {
-          console.log(err)
-          toast.error(err?.message)
+            console.log(err)
+            toast.error(err?.message)
         }
-      }
-    
+    }
+
 
 
     return (
@@ -86,8 +80,8 @@ const LogIn = () => {
                                     <div >
                                         <div className='flex justify-start'>
                                             <label htmlFor='email' className='block mb-2 text-lg'>
-                                    Email address
-                                        </label>
+                                                Email address
+                                            </label>
                                         </div>
                                         <input
                                             type='email'

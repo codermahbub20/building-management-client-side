@@ -33,6 +33,11 @@ import DashboardLayout from "../Layouts/DashboardLayout";
     },
     {
       path:"/dashboard",
-      element: <DashboardLayout></DashboardLayout>
+      element: <DashboardLayout></DashboardLayout>,
+      children: [
+        {
+          
+        }
+      ]
     }
   ]);
