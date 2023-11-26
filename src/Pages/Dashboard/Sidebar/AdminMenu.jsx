@@ -22,7 +22,7 @@ const AdminMenu = () => {
               <MenuItem
                 icon={GrAnnounce}
                 label='Announcement'
-                address='/dashboard'
+                address='/dashboard/adminAnnouncement'
               />
 
               <MenuItem

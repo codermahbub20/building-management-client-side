@@ -8,7 +8,7 @@ const UserMenu = () => {
             <MenuItem
                 icon={CgProfile}
                 label='User Profile'
-                address='/dashboard'
+                address='/dashboard/userHome'
             />
 
             <MenuItem

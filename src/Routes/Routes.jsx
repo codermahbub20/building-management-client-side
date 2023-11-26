@@ -9,6 +9,7 @@ import AdminProfile from "../Pages/Dashboard/AdminRoute/AdminProfile";
 import PrivateRoute from '../Routes/PrivateRoute'
 import ManageMember from "../Pages/Dashboard/AdminRoute/ManageMember";
 import AgreementRequest from "../Pages/Dashboard/AdminRoute/AgreementRequest";
+import AdminAnnouncement from "../Pages/Dashboard/AdminRoute/AdminAnnouncement";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
       {
         path: "agreement",
         element: <AgreementRequest></AgreementRequest>
+      },
+      {
+        path: "adminAnnouncement",
+        element: <AdminAnnouncement></AdminAnnouncement>
       }
     ]
   }
