@@ -7,13 +7,8 @@ const UserHome = () => {
     const { user } = useAuth()
     const [agreement] = useAgreement()
 
-    console.log(agreement)
+    // console.log(agreement)
 
-    // if(user?.email === agreement?.userEmail  &&  agreement.status === 'checked'){
-    //     console.log("hello")
-    // }else{
-    //     console.log("geello")
-    // }
 
     return (
         <div>
