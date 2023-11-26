@@ -10,6 +10,7 @@ import PrivateRoute from '../Routes/PrivateRoute'
 import ManageMember from "../Pages/Dashboard/AdminRoute/ManageMember";
 import AgreementRequest from "../Pages/Dashboard/AdminRoute/AgreementRequest";
 import AdminAnnouncement from "../Pages/Dashboard/AdminRoute/AdminAnnouncement";
+import UserHome from "../Pages/Dashboard/UserRoute/UserHome";
 
 export const router = createBrowserRouter([
   {
@@ -56,6 +57,11 @@ export const router = createBrowserRouter([
       {
         path: "adminAnnouncement",
         element: <AdminAnnouncement></AdminAnnouncement>
+      },
+      // user route
+      {
+        path: "userHome",
+        element: <UserHome></UserHome>
       }
     ]
   }

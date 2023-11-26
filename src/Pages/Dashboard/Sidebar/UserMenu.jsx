@@ -14,7 +14,7 @@ const UserMenu = () => {
             <MenuItem
                 icon={GrAnnounce}
                 label='Announcement'
-                address='/dashboard'
+                address='/dashboard/userHome'
             />
         </>
     );

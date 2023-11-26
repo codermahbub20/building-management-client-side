@@ -3,10 +3,13 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import avatarImg from '../../assets/Login/Avatar.png'
 import useAuth from '../../Components/hooks/useAuth'
+import useRole from '../../Components/hooks/useRole'
 
 const MenuDropdown = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { user,logOut } = useAuth()
+
+  const [role] = useRole()
 
   const handleLogOut = () =>{
     logOut()
@@ -53,12 +56,30 @@ const MenuDropdown = () => {
 
             {user ? <>
             <p className='text-center'>{user?.displayName}</p>
-              <Link
+              {role === 'admin' && <Link
+              to='/dashboard'
+              className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+            >
+              Dashboard
+            </Link>}
+            {
+              role === 'guest' && <Link
+              to='/dashboard/userHome'
+              className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+            >
+              Dashboard
+            </Link>
+            }
+
+            {
+              role === 'member' && <Link
               to='/dashboard'
               className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
             >
               Dashboard
             </Link>
+            }
+
             <div onClick={handleLogOut}
               className='px-4 py-3 hover:bg-neutral-100 cursor-pointer transition font-semibold'
             >
