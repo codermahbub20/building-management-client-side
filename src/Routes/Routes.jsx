@@ -12,6 +12,7 @@ import AgreementRequest from "../Pages/Dashboard/AdminRoute/AgreementRequest";
 import AdminAnnouncement from "../Pages/Dashboard/AdminRoute/AdminAnnouncement";
 import UserHome from "../Pages/Dashboard/UserRoute/UserHome";
 import Announcements from "../Shared/Announcements/Announcements";
+import Coupon from "../Pages/Dashboard/AdminRoute/Coupon";
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
       {
         path: "adminAnnouncement",
         element: <AdminAnnouncement></AdminAnnouncement>
+      },
+      {
+        path: "coupon",
+        element : <Coupon></Coupon>
       },
       // user route
       {

@@ -34,7 +34,7 @@ const AdminMenu = () => {
               <MenuItem
                 icon={MdDiscount}
                 label='Coupons'
-                address='/dashboard'
+                address='/dashboard/coupon'
               />  
         </>
     );
