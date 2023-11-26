@@ -17,7 +17,7 @@ const AdminMenu = () => {
               <MenuItem
                 icon={FaUsers}
                 label='Manage Members'
-                address='/dashboard'
+                address='/dashboard/manageMember'
               />
               <MenuItem
                 icon={GrAnnounce}
@@ -28,7 +28,7 @@ const AdminMenu = () => {
               <MenuItem
                 icon={FaFilePdf}
                 label='Agreement Request'
-                address='/dashboard'
+                address='/dashboard/agreement'
               />
 
               <MenuItem

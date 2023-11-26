@@ -6,9 +6,10 @@ import useAuth from "../Components/hooks/useAuth";
 
 const PrivateRoute = ({children}) => {
 
-    const {user,loading} = useAuth;
+    const {user,loading} = useAuth();
     const location = useLocation()
-
+    console.log(user)
+    
     if(loading) {
        return <span className="loading loading-dots loading-lg"></span>
     }

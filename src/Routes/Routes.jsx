@@ -5,39 +5,53 @@ import SignUp from "../Pages/SignUp/SignUp";
 import LogIn from "../Pages/LogIn/LogIn";
 import Apartment from "../Pages/ApartMent/Apartment";
 import DashboardLayout from "../Layouts/DashboardLayout";
+import AdminProfile from "../Pages/Dashboard/AdminRoute/AdminProfile";
+import PrivateRoute from '../Routes/PrivateRoute'
+import ManageMember from "../Pages/Dashboard/AdminRoute/ManageMember";
+import AgreementRequest from "../Pages/Dashboard/AdminRoute/AgreementRequest";
 
-
- export const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Main></Main>,
-      children:[
-        {
-            path: "/",
-            element: <Home></Home>
-        },
-        {
-          path: "apartment",
-          element: <Apartment></Apartment>,
-          loader: () => fetch(`http://localhost:5000/apartmentsCount`)
-        }
-      ]
-    },
-    {
-      path: "/signup",
-      element: <SignUp></SignUp>
-    },
-    {
-      path: "/login",
-      element: <LogIn></LogIn>
-    },
-    {
-      path:"/dashboard",
-      element: <DashboardLayout></DashboardLayout>,
-      children: [
-        {
-          
-        }
-      ]
-    }
-  ]);
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Main></Main>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>
+      },
+      {
+        path: "apartment",
+        element: <Apartment></Apartment>,
+        loader: () => fetch(`http://localhost:5000/apartmentsCount`)
+      }
+    ]
+  },
+  {
+    path: "/signup",
+    element: <SignUp></SignUp>
+  },
+  {
+    path: "/login",
+    element: <LogIn></LogIn>
+  },
+  {
+    path: "/dashboard",
+    element: <PrivateRoute>
+      <DashboardLayout></DashboardLayout>
+    </PrivateRoute>,
+    children: [
+      {
+        path: "/dashboard",
+        element: <AdminProfile></AdminProfile>
+      },
+      {
+        path: "manageMember",
+        element: <ManageMember></ManageMember>
+      },
+      {
+        path: "agreement",
+        element: <AgreementRequest></AgreementRequest>
+      }
+    ]
+  }
+]);
