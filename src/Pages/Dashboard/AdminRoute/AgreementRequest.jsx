@@ -13,8 +13,8 @@ const AgreementRequest = () => {
 
     const [role] = useRole()
 
-    const [user] = useUser()
-    console.log(user)
+    const [User] = useUser()
+    console.log(User)
 
 
     const handleAccept = id => {
@@ -23,7 +23,7 @@ const AgreementRequest = () => {
             status: 'checked'
         }
 
-        
+        // if()
             const userInfo = {
                 email : agreement.userEmail,
                 role: 'member',

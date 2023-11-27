@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import axiosPublic from "./useAxiosPublic";
 
-const useApartments = () => {
 
-    const [apartments, setApartments] = useState([])
+const useApartments = (currentPage, itemsPerPage) => {
+    const { data: appartments = [], isPending: loading, refetch } = useQuery({
+        queryKey: ['appartments'],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/apartment?page=${currentPage}&size=${itemsPerPage}`)
+            return res.data;
+        }
+    })
 
-    useEffect(() => {
-        fetch('http://localhost:5000/apartment')
-            .then(res => res.json())
-            .then(data => {
-                setApartments(data)
-            })
-    }, [])
-    return [apartments]
+    return [appartments, loading, refetch]
 };
 
 export default useApartments;

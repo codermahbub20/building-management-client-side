@@ -9,6 +9,7 @@ export default {
       fontFamily :{
         rancho: "'Rancho', cursive",
         lora: 'Lora', 
+        sansBalsmiq:'Balsamiq Sans', 
       }
     },
   },
