@@ -14,6 +14,7 @@ import UserHome from "../Pages/Dashboard/UserRoute/UserHome";
 import Announcements from "../Shared/Announcements/Announcements";
 import Coupon from "../Pages/Dashboard/AdminRoute/Coupon";
 import MemberHome from "../Pages/Dashboard/MemberRoute/MemberHome";
+import MakePayment from "../Pages/Dashboard/MemberRoute/MakePayment";
 
 export const router = createBrowserRouter([
   {
@@ -79,6 +80,10 @@ export const router = createBrowserRouter([
       {
         path: "memberHome",
         element: <MemberHome></MemberHome>
+      },
+      {
+        path : "payment",
+        element: <MakePayment></MakePayment>
       }
 
     ]

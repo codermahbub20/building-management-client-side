@@ -16,7 +16,7 @@ const MemberMenu = () => {
             <MenuItem
                 icon={FaCcMastercard}
                 label='Make Payment'
-                address='/dashboard'
+                address='/dashboard/payment'
             />
             <MenuItem
                 icon={GiHistogram}

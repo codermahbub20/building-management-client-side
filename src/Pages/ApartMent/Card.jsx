@@ -26,7 +26,8 @@ const Card = ({ apartment }) => {
         agreement_date: formattedDate1,
         rent,
         room_no: Math.floor((Math.random() * 40) + 20),
-        status: 'pending'
+        status: 'pending',
+        request: 'requesting'
     }
 
     const handleAdded = (id) => {
