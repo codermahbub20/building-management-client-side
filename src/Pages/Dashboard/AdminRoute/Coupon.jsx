@@ -80,7 +80,7 @@ percentage" className="input input-bordered" required />
             <h1 className='text-3xl font-medium text-center py-4'>All Created Coupon are Here</h1>
 
             <div className="overflow-x-auto">
-                <table className="table table-zebra">
+                <table className="table text-lg table-zebra">
                     {/* head */}
                     <thead>
                         <tr>

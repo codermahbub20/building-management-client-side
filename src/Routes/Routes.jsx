@@ -13,6 +13,7 @@ import AdminAnnouncement from "../Pages/Dashboard/AdminRoute/AdminAnnouncement";
 import UserHome from "../Pages/Dashboard/UserRoute/UserHome";
 import Announcements from "../Shared/Announcements/Announcements";
 import Coupon from "../Pages/Dashboard/AdminRoute/Coupon";
+import MemberHome from "../Pages/Dashboard/MemberRoute/MemberHome";
 
 export const router = createBrowserRouter([
   {
@@ -72,7 +73,14 @@ export const router = createBrowserRouter([
       {
         path: "announcements",
         element: <Announcements></Announcements>
+      },
+
+      // Member route
+      {
+        path: "memberHome",
+        element: <MemberHome></MemberHome>
       }
+
     ]
   }
 ]);

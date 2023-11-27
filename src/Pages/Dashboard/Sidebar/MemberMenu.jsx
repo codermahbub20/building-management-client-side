@@ -10,7 +10,7 @@ const MemberMenu = () => {
             <MenuItem
                 icon={CgProfile}
                 label='Member Profile'
-                address='/dashboard'
+                address='/dashboard/memberHome'
             />
 
             <MenuItem
@@ -27,7 +27,7 @@ const MemberMenu = () => {
             <MenuItem
                 icon={GrAnnounce}
                 label='Announcement'
-                address='/dashboard'
+                address='/dashboard/announcements'
             />
         </>
     );
