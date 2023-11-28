@@ -11,53 +11,61 @@ const AgreementRequest = () => {
     const [agreement, loading, refetch] = useAgreement()
     console.log(agreement)
 
-    const [role] = useRole()
+    const [roles] = useRole()
 
-    const [User] = useUser()
+    const { User } = useUser()
     console.log(User)
-    
+
+
+
 
     const handleAccept = (id) => {
-        const agreementInfo = {
-          status: 'checked',
-          request: 'booked'
-        };
-      
-        // Check if the user role is already 'member' to avoid unnecessary API calls
-        if (role !== 'admin' && User.role !== 'member') {
 
-            
-          const userInfo = {
-            role: 'member',
-          };
-      
-          axiosPublic.put(`/users/${id}`, userInfo)
+        const agreementInfo = {
+            status: 'checked',
+            request: 'booked'
+        };
+
+        User.filter(item => {
+            console.log(roles)
+            console.log(item.role)
+            if (roles === 'admin' && item?.role === 'guest') {
+
+                const userInfo = {
+                    role: 'member',
+                };
+
+                axiosPublic.put(`/users/${id}`, userInfo)
+                    .then((res) => {
+                        console.log(res.data);
+                    })
+                    .catch((error) => {
+                        console.error('Error updating user role:', error);
+                    });
+            }
+        })
+
+        // Check if the user role is already 'member' to avoid unnecessary API calls
+
+
+        axiosPublic.put(`/agreements/${id}`, agreementInfo)
             .then((res) => {
-              console.log(res.data);
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'The Agreement was Checked!',
+                        icon: 'success',
+                        confirmButtonText: 'Great',
+                    });
+                    refetch();
+                }
             })
             .catch((error) => {
-              console.error('Error updating user role:', error);
+                console.error('Error updating agreement:', error);
             });
-        }
-      
-        axiosPublic.put(`/agreements/${id}`, agreementInfo)
-          .then((res) => {
-            console.log(res.data);
-            if (res.data.modifiedCount > 0) {
-              Swal.fire({
-                title: 'Success!',
-                text: 'The Agreement was Checked!',
-                icon: 'success',
-                confirmButtonText: 'Great',
-              });
-              refetch();
-            }
-          })
-          .catch((error) => {
-            console.error('Error updating agreement:', error);
-          });
-      };
-      
+    };
+
 
 
     const handleReject = (id) => {

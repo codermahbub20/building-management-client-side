@@ -9,7 +9,7 @@ const MenuDropdown = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { user,logOut } = useAuth()
 
-  const [role] = useRole()
+  const [roles] = useRole()
 
   const handleLogOut = () =>{
     logOut()
@@ -56,14 +56,14 @@ const MenuDropdown = () => {
 
             {user ? <>
             <p className='text-center'>{user?.displayName}</p>
-              {role === 'admin' && <Link
+              {roles === 'admin' && <Link
               to='/dashboard'
               className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
             >
               Dashboard
             </Link>}
             {
-              role === 'guest' && <Link
+              roles === 'guest' && <Link
               to='/dashboard/userHome'
               className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
             >
@@ -72,7 +72,7 @@ const MenuDropdown = () => {
             }
 
             {
-              role === 'member' && <Link
+              roles === 'member' && <Link
               to='/dashboard/memberHome'
               className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
             >

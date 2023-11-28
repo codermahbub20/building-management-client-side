@@ -12,7 +12,7 @@ const useUser = () => {
         }
     })
 
-    return [User, loading, refetch]
+    return {User, loading, refetch}
 
 };
 

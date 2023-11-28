@@ -25,7 +25,7 @@ const UserHome = () => {
             <div className="w-3/4 grid lg:grid-cols-2 sm:mt-[200px] md:mt-3 gap-5 mx-auto">
                 {
                     agreement
-                        .filter((item) => item.status === 'checked' && user?.email === item?.userEmail)
+                        .filter((item) => item.status === 'pending' && user?.email === item?.userEmail)
                         .map(agreeCard => <div key={agreeCard._id}>
 
                             <a href="#" className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
@@ -36,6 +36,7 @@ const UserHome = () => {
                                 <p className="font-normal text-xl text-gray-700 dark:text-gray-400">Room No:{agreeCard?.room_no}</p>
                                 <p className="font-normal text-xl text-gray-700 dark:text-gray-400">Apartment No:{agreeCard?.apartment_no}</p>
                                 <p className="font-normal text-xl text-gray-700 dark:text-gray-400">Agreement Date:{agreeCard?.agreement_date}</p>
+                                <p className="font-normal text-xl text-gray-700 dark:text-gray-400">Agreement Status:{agreeCard?.status}</p>
                                 <p className="font-normal text-xl text-gray-700 dark:text-gray-400">Rent Per Month:{agreeCard?.rent}</p>
                             </a>
 

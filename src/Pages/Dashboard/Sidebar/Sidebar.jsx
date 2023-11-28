@@ -13,10 +13,10 @@ import MemberMenu from './MemberMenu';
 const Sidebar = () => {
 
     const [isActive, setActive] = useState(false)
-    const [role] = useRole()
+    const [roles] = useRole()
 
 
-    console.log('role is', role)
+    console.log('role is', roles)
 
 
     // Sidebar Responsive Handler
@@ -60,9 +60,9 @@ const Sidebar = () => {
 
                         <nav>
 
-                            {role === 'admin' && <AdminMenu></AdminMenu>}
-                            {role === 'guest' && <UserMenu></UserMenu>}
-                            {role === 'member' && <MemberMenu></MemberMenu>}
+                            {roles === 'admin' && <AdminMenu></AdminMenu>}
+                            {roles === 'guest' && <UserMenu></UserMenu>}
+                            {roles === 'member' && <MemberMenu></MemberMenu>}
 
                         </nav>
 

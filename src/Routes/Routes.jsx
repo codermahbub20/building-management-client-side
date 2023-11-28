@@ -15,6 +15,11 @@ import Announcements from "../Shared/Announcements/Announcements";
 import Coupon from "../Pages/Dashboard/AdminRoute/Coupon";
 import MemberHome from "../Pages/Dashboard/MemberRoute/MemberHome";
 import MakePayment from "../Pages/Dashboard/MemberRoute/MakePayment";
+import PaymentCard from "../Pages/Dashboard/MemberRoute/PaymentCard";
+import AdminRoute from "./AdminRoute";
+import UserRoute from "./UserRoute";
+import MemberRoute from "./MemberRoute";
+
 
 export const router = createBrowserRouter([
   {
@@ -29,7 +34,8 @@ export const router = createBrowserRouter([
         path: "apartment",
         element: <Apartment></Apartment>,
         loader: () => fetch(`http://localhost:5000/apartmentsCount`)
-      }
+      },
+      
     ]
   },
   {
@@ -48,44 +54,51 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <AdminProfile></AdminProfile>
+        element: <PrivateRoute><AdminRoute><AdminProfile></AdminProfile></AdminRoute></PrivateRoute>
       },
       {
         path: "manageMember",
-        element: <ManageMember></ManageMember>
+        element: <PrivateRoute><AdminRoute><ManageMember></ManageMember></AdminRoute></PrivateRoute>
       },
       {
         path: "agreement",
-        element: <AgreementRequest></AgreementRequest>
+        element: <PrivateRoute><AdminRoute><AgreementRequest></AgreementRequest></AdminRoute></PrivateRoute>
       },
       {
         path: "adminAnnouncement",
-        element: <AdminAnnouncement></AdminAnnouncement>
+        element: <PrivateRoute><AdminRoute><AdminAnnouncement></AdminAnnouncement></AdminRoute></PrivateRoute>
       },
       {
         path: "coupon",
-        element : <Coupon></Coupon>
+        element : <PrivateRoute><AdminRoute><Coupon></Coupon></AdminRoute></PrivateRoute>
       },
       // user route
       {
         path: "userHome",
-        element: <UserHome></UserHome>
+        element: <PrivateRoute><UserRoute><UserHome></UserHome></UserRoute></PrivateRoute>
       },
       {
         path: "announcements",
-        element: <Announcements></Announcements>
+        element: <PrivateRoute><UserRoute><Announcements></Announcements></UserRoute></PrivateRoute>
       },
 
       // Member route
       {
         path: "memberHome",
-        element: <MemberHome></MemberHome>
+        element: <PrivateRoute><MemberRoute><MemberHome></MemberHome></MemberRoute></PrivateRoute>
       },
       {
         path : "payment",
-        element: <MakePayment></MakePayment>
+        element: <PrivateRoute><MemberRoute><MakePayment></MakePayment></MemberRoute></PrivateRoute>  
+      },
+      {
+        path: "payment/paymentCard/:id",
+        element: <PrivateRoute><MemberRoute><PaymentCard></PaymentCard></MemberRoute></PrivateRoute>
       }
+     
 
     ]
   }
 ]);
+
+// payment/paymentCard/:id
