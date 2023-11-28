@@ -10,8 +10,8 @@ const Navbar = () => {
     console.log(user)
     const navLinks = <>
         <li><NavLink to="/">Home</NavLink></li>
-        <li><Link to="apartment">Apartment</Link></li>
-        <li><Link >Home</Link></li>
+        <li><NavLink to="apartment">Apartment</NavLink></li>
+       
     </>
 
     return (
@@ -39,7 +39,7 @@ const Navbar = () => {
                 <div className="navbar-end">
                     {
                         user ? <MenuDropdown></MenuDropdown> :
-                            <Link to="/login">
+                            <Link className="btn" to="/login">
                                 Login
                             </Link>
                     }

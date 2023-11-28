@@ -19,6 +19,7 @@ import PaymentCard from "../Pages/Dashboard/MemberRoute/PaymentCard";
 import AdminRoute from "./AdminRoute";
 import UserRoute from "./UserRoute";
 import MemberRoute from "./MemberRoute";
+import UpdateCoupon from "../Pages/Dashboard/AdminRoute/UpdateCoupon";
 
 
 export const router = createBrowserRouter([
@@ -35,7 +36,7 @@ export const router = createBrowserRouter([
         element: <Apartment></Apartment>,
         loader: () => fetch(`http://localhost:5000/apartmentsCount`)
       },
-      
+
     ]
   },
   {
@@ -70,7 +71,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "coupon",
-        element : <PrivateRoute><AdminRoute><Coupon></Coupon></AdminRoute></PrivateRoute>
+        element: <PrivateRoute><AdminRoute><Coupon></Coupon></AdminRoute></PrivateRoute>
+      },
+      {
+        path: "coupon/updateCoupon/:id",
+        element: <UpdateCoupon></UpdateCoupon>,
+        loader: ({ params }) => fetch(`http://localhost:5000/coupon/${params.id}`)
       },
       // user route
       {
@@ -88,14 +94,14 @@ export const router = createBrowserRouter([
         element: <PrivateRoute><MemberRoute><MemberHome></MemberHome></MemberRoute></PrivateRoute>
       },
       {
-        path : "payment",
-        element: <PrivateRoute><MemberRoute><MakePayment></MakePayment></MemberRoute></PrivateRoute>  
+        path: "payment",
+        element: <PrivateRoute><MemberRoute><MakePayment></MakePayment></MemberRoute></PrivateRoute>
       },
       {
         path: "payment/paymentCard/:id",
         element: <PrivateRoute><MemberRoute><PaymentCard></PaymentCard></MemberRoute></PrivateRoute>
       }
-     
+
 
     ]
   }

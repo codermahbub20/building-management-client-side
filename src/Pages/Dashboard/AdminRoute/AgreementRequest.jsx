@@ -93,10 +93,12 @@ const AgreementRequest = () => {
     }
 
     return (
-        <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-5">
+        <div>
+            <h1 className="text-4xl text-center font-medium">All Pending Agreement Are Here</h1>
+            <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-5">
             {
                 agreement
-                    .filter((item) => item.status === 'pending')
+                    .filter((item) => item.status === 'pending') 
                     .map(agreeCard => <div key={agreeCard._id}>
 
                         <div className="max-w-sm bg-white border border-black rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -118,8 +120,9 @@ const AgreementRequest = () => {
                             <button onClick={() => handleReject(agreeCard._id)} className="btn w-full mb-2 mt-2">Reject</button>
                         </div>
 
-                    </div>)
+                    </div>) 
             }
+        </div>
         </div>
     );
 };

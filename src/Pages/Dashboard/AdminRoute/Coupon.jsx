@@ -2,10 +2,11 @@ import Lottie from 'lottie-react';
 import couponGig from '../../../assets/Animation - 1701014748886.json'
 import useAxiosRandom from '../../../Components/hooks/useAxiosRandom';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Coupon = () => {
 
-    const [couponData , setCouponData] = useState()
+    const [couponData, setCouponData] = useState()
 
     const axiosRandom = useAxiosRandom()
 
@@ -13,8 +14,8 @@ const Coupon = () => {
         e.preventDefault()
         const form = e.target;
         const code = form.code.value;
-        const discount = form.discount.value
-        const description = form.description.value
+        const discount = form.discount.value;
+        const description = form.description.value;
 
         const couponData = { code, discount, description }
         // console.log(code, discount, description)
@@ -25,10 +26,14 @@ const Coupon = () => {
         form.reset()
     }
 
+
     axiosRandom.get('/coupon')
-    .then(res => {
-        setCouponData(res.data)
-    })
+        .then(res => {
+            setCouponData(res.data)
+        })
+
+
+
 
 
     return (
@@ -73,6 +78,8 @@ percentage" className="input input-bordered" required />
                         </div>
                     </dialog>
                 </div>
+
+
                 <div>
                     <Lottie className='lg:w-1/2' animationData={couponGig}></Lottie>
                 </div>
@@ -88,21 +95,24 @@ percentage" className="input input-bordered" required />
                             <th>Coupon Code</th>
                             <th>Coupon Discount</th>
                             <th>Coupon description</th>
+                            <th>Update</th>
                         </tr>
                     </thead>
                     <tbody>
 
-                    {
-                        couponData?.map((item,index) => <tr key={item._id}>
-                            <th>{index +1}</th>
-                            <td>{item?.code}</td>
-                            <td>{item?.discount} %</td>
-                            <td>{item?.description}</td>
-                        </tr> )
-                    }
+                        {
+                            couponData?.map((item, index) => <tr key={item._id}>
+                                <th>{index + 1}</th>
+                                <td>{item?.code}</td>
+                                <td>{item?.discount} %</td>
+                                <td>{item?.description}</td>
+                                <td><Link to={`updateCoupon/${item._id}`}><button className='btn-success btn  text-sm'>Update</button></Link></td>
+
+                            </tr>)
+                        }
 
                         {/* row 1 */}
-                       
+
 
                     </tbody>
                 </table>

@@ -22,6 +22,14 @@ const Apartment = () => {
     const pages = [...Array(numberOfPage).keys()];
 
 
+    useEffect(() => {
+        fetch(`http://localhost:5000/apartment?page=${currentPage}&size=${itemsPerPage}`)
+            .then(res => res.json())
+            .then(data => {
+                setApartments(data)
+            })
+    }, [currentPage, itemsPerPage])
+
     const handleItemsPerPage = e => {
         console.log(e.target.value)
         const value = parseInt(e.target.value)
@@ -42,13 +50,7 @@ const Apartment = () => {
 
     // pagination related all code here
 
-    useEffect(() => {
-        fetch(`http://localhost:5000/apartment?page=${currentPage}&size=${itemsPerPage}`)
-            .then(res => res.json())
-            .then(data => {
-                setApartments(data)
-            })
-    }, [currentPage, itemsPerPage])
+
 
 
     return (
