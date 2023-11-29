@@ -1,15 +1,16 @@
-import Lottie from 'lottie-react';
-import couponGig from '../../../assets/Animation - 1701014748886.json'
+
 
 import { useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axiosPublic from '../../../Components/hooks/useAxiosPublic';
+
 
 const UpdateCoupon = () => {
 
 
     const couponData = useLoaderData()
     const {_id} = couponData;
+
 
     console.log(couponData)
 

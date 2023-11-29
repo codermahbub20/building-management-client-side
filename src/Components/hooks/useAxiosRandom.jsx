@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosRandom = axios.create({
-    baseURL: 'http://localhost:5000'
+    baseURL: 'https://building-management-server-lemon.vercel.app'
 });
 
 const useAxiosRandom = () => {

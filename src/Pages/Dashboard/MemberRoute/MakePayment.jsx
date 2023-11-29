@@ -1,8 +1,8 @@
 // import { useState } from "react";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useAgreement from "../../../Components/hooks/useAgreement";
 import useAuth from "../../../Components/hooks/useAuth";
-import axiosPublic from "../../../Components/hooks/useAxiosPublic";
+
 
 // import BookingModal from "./BookingModal";
 
@@ -20,7 +20,7 @@ const MakePayment = () => {
     // }
 
 
-    const handleSubmit = async (e , id) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         const form = e.target;
@@ -45,18 +45,10 @@ const MakePayment = () => {
             taka
         }
 
-        try {
-            // Post paymentInfo to the database
-            const response = await axiosPublic.post('/payments', paymentInfo);
-            console.log(response.data);
 
-            // Redirect to another page with the payment ID as a parameter
-            navigate(`/paymentCard/${id}`);
-        } catch (error) {
-            console.error('Error posting payment:', error);
-            // Handle error, show a message, etc.
-        }
-
+        navigate("paymentCard", {
+            state: { paymentInfo }
+        })
     }
 
 
@@ -125,9 +117,9 @@ const MakePayment = () => {
                                         </select>
                                     </div>
                                     <div className="form-control mt-6">
-                                        {/* <Link className="w-full" to={`paymentCard/${agreeCard._id}`}> */}
-                                            <button onClick={()=>agreeCard._id} className="btn w-full bg-[#70e000]">Pay</button>
-                                        {/* </Link> */}
+
+                                        <button className="btn w-full bg-[#70e000]">Pay</button>
+
                                     </div>
                                 </form>
                             </div>

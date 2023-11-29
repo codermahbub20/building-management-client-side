@@ -11,6 +11,6 @@ export const imageUpload = async image =>{
 }
 
 export const getRole = async (email) =>{
-  const {data} = await axios.get(`http://localhost:5000/users/${email}`)
+  const {data} = await axios.get(`https://building-management-server-lemon.vercel.app/users/${email}`)
   return data.role;
 }

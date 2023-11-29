@@ -23,7 +23,7 @@ const Apartment = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/apartment?page=${currentPage}&size=${itemsPerPage}`)
+        fetch(`https://building-management-server-lemon.vercel.app/apartment?page=${currentPage}&size=${itemsPerPage}`)
             .then(res => res.json())
             .then(data => {
                 setApartments(data)

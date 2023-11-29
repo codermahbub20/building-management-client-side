@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
       {
         path: "apartment",
         element: <Apartment></Apartment>,
-        loader: () => fetch(`http://localhost:5000/apartmentsCount`)
+        loader: () => fetch(`https://building-management-server-lemon.vercel.app/apartmentsCount`)
       },
 
     ]
@@ -76,7 +76,7 @@ export const router = createBrowserRouter([
       {
         path: "coupon/updateCoupon/:id",
         element: <UpdateCoupon></UpdateCoupon>,
-        loader: ({ params }) => fetch(`http://localhost:5000/coupon/${params.id}`)
+        loader: ({ params }) => fetch(`https://building-management-server-lemon.vercel.app/coupon/${params.id}`)
       },
       // user route
       {
@@ -85,7 +85,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "announcements",
-        element: <PrivateRoute><UserRoute><Announcements></Announcements></UserRoute></PrivateRoute>
+        element: <PrivateRoute><Announcements></Announcements></PrivateRoute>
       },
 
       // Member route
@@ -98,8 +98,8 @@ export const router = createBrowserRouter([
         element: <PrivateRoute><MemberRoute><MakePayment></MakePayment></MemberRoute></PrivateRoute>
       },
       {
-        path: "payment/paymentCard/:id",
-        element: <PrivateRoute><MemberRoute><PaymentCard></PaymentCard></MemberRoute></PrivateRoute>
+        path: "payment/paymentCard",
+        element: <PaymentCard></PaymentCard>
       }
 
 

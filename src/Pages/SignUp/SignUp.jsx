@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+
 // import { FcGoogle } from 'react-icons/fc'
 import { FcGoogle } from "react-icons/fc";
 
@@ -8,14 +8,20 @@ import toast from 'react-hot-toast';
 import { imageUpload } from '../../Components/api/utils';
 import useAuth from '../../Components/hooks/useAuth';
 import { saveUser } from '../../Components/hooks/saveUser';
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 
 const SignUp = () => {
 
-  const { createUser, signInWithGoogle, updateUserProfile, loading } = useAuth()
-
+  const { createUser, signInWithGoogle, updateUserProfile} = useAuth()
   const navigate = useNavigate()
+
+  // const notify = () => toast("Registration Successful!");
+  // const notify1 = () => toast('Password should be at 6 characters or longer');
+  // const notify2 = () => toast('your Password should have at one upper case latter');
+  // const notify3 = () => toast('your Password should have at one special characters');
 
 
   const handleSignUp = async e => {
@@ -24,13 +30,24 @@ const SignUp = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    const image = form.image.files[0];
+    const image = form.image.files[0]
 
 
     try {
+      
       //1. Upload Image
       const imageData = await imageUpload(image)
 
+      // if (password.length < 6) {
+      //   notify1();
+      //   return;
+      // } else if (!/[A-Z]/.test(password)) {
+      //   notify2();
+      //   return;
+      // } else if (!/^(?=.*[\d])(?=.*[!@#$%^&*])[\w!@#$%^&*]{6,16}$/.test(password)) {
+      //   notify3();
+      //   return;
+      // }
       //2. User Registration
       const result = await createUser(email, password)
 
@@ -41,19 +58,25 @@ const SignUp = () => {
       //4. save user data in database
       const dbResponse = await saveUser(result?.user)
       console.log(dbResponse)
-      // result.user.email
 
-      //  token related
-      // await getToken(result?.user?.email)
-      // navigate('/')
-      // toast.success('SignUp Successful')
-
-
+      if (dbResponse.upsertedCount > 0) {
+        Swal.fire({
+            title: 'Success!',
+            text: 'SignUp Successful',
+            icon: 'success',
+            confirmButtonText: 'Great',
+        });
+        
+    }
+    navigate('/login')
     } catch (err) {
       console.log(err)
       toast.error(err?.message)
+
     }
+    form.reset()
   }
+  // notify()
   // 
   const handleGoogleSignIn = async () => {
     try {
@@ -67,16 +90,11 @@ const SignUp = () => {
       console.log(dbResponse)
       result.user.email
 
-      //   //  token related
-      //   await getToken(result?.user?.email)
-      //   navigate('/')
-      //   toast.success('SignUp Successful')
-
-
     } catch (err) {
       console.log(err)
       toast.error(err?.message)
     }
+    // notify()
   }
 
   return (
