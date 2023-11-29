@@ -2,9 +2,9 @@
 
 const About = () => {
     return (
-        <div>
+        <div >
             <h1 className="sm:text-4xl md:text-5xl font-sansBalsmiq font-medium text-center">About    the  building</h1>
-            <div className=" md:mt-5 md:p-10 gap-5 lg:flex">
+            <div className=" md:mt-5 w-11/12 mx-auto md:p-10 gap-5 lg:flex">
                 <div className="space-y-4 flex-1 lg:justify-end   flex-row-reverse items-center">
                     <h1 className="text-4xl font-sansBalsmiq font-semibold">More About For Our Building.......</h1>
                     <p className="text-start md:text-lg font-lora text-inherit">

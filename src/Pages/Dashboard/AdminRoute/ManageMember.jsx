@@ -13,7 +13,7 @@ const ManageMember = () => {
             role: 'guest'
         };
 
-        axiosSecure.put(`/users/${id}`, updateData)
+        axiosSecure.patch(`/users/${id}`, updateData)
             .then((res) => {
                 console.log(res.data);
 
