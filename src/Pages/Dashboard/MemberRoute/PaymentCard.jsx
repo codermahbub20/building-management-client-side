@@ -66,8 +66,8 @@ console.log("from paymentcard")
 
 
     return (
-        <div className="w-3/4 mx-auto grid grid-cols-2">
-            <div className="">
+        <div className="md:w-3/4  mx-auto grid md:grid-cols-2">
+            <div className="w-full">
                 <form onSubmit={handleSubmit} className="card-body">
                     <div className="form-control">
                         <label className="label">

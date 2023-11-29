@@ -21,7 +21,7 @@ const MemberMenu = () => {
             <MenuItem
                 icon={GiHistogram}
                 label='Payment History'
-                address='/dashboard'
+                address='/dashboard/paymentHistory'
             />
 
             <MenuItem

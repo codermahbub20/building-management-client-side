@@ -20,6 +20,7 @@ import AdminRoute from "./AdminRoute";
 import UserRoute from "./UserRoute";
 import MemberRoute from "./MemberRoute";
 import UpdateCoupon from "../Pages/Dashboard/AdminRoute/UpdateCoupon";
+import PaymentHistory from "../Pages/Dashboard/MemberRoute/PaymentHistory";
 
 
 export const router = createBrowserRouter([
@@ -100,6 +101,10 @@ export const router = createBrowserRouter([
       {
         path: "payment/paymentCard",
         element: <PaymentCard></PaymentCard>
+      },
+      {
+        path: "paymentHistory",
+        element: <PaymentHistory></PaymentHistory>
       }
 
 

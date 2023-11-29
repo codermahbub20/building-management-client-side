@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
@@ -5,18 +6,20 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../Components/hooks/useAxiosSecure";
 import useAuth from "../../../Components/hooks/useAuth";
 import axios from "axios";
+import Swal from "sweetalert2";
 // import useAxiosRandom from "../../../Components/hooks/useAxiosRandom";
 
 
 const CheckoutForm = ({ paymentInfo }) => {
 
     const [clientSecret, setClientSecret] = useState('')
-    const [transectionId, setTransectionId] = useState()
+    const [transactionId, setTransactionId] = useState('')
+    const [error, setError] = useState('');
 
     const { email, floor, block, apartment, month, taka } = paymentInfo;
     console.log(paymentInfo)
 
-    
+
 
     // console.log(paymentData.taka)
 
@@ -29,59 +32,96 @@ const CheckoutForm = ({ paymentInfo }) => {
     const elements = useElements();
     // let isMounted = false;
     useEffect(() => {
-        if(taka  > 0 ){
+        if (taka > 0) {
             axiosSecure.post('/create-payment-intent', { price: taka })
-        .then(res => {
-            console.log(res.data.clientSecret)
-            setClientSecret(res.data.clientSecret)
-        })
+                .then(res => {
+                    console.log(res.data.clientSecret)
+                    setClientSecret(res.data.clientSecret)
+                })
         }
-        
-    }, [axiosSecure,taka])  
+
+    }, [axiosSecure, taka])
+
 
     const handleSubmit = async (event) => {
-        // Block native form submission.
         event.preventDefault();
 
         if (!stripe || !elements) {
-
-            return;
+            return
         }
 
-        const card = elements.getElement(CardElement);
+        const card = elements.getElement(CardElement)
 
-        if (card == null) {
-            return;
+        if (card === null) {
+            return
         }
 
-        // Use your card Element with other Stripe.js APIs
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
-            card,
-        });
+            card
+        })
 
         if (error) {
-            console.log('[error]', error);
-        } else {
-            console.log('[PaymentMethod]', paymentMethod);
+            console.log('payment error', error);
+            setError(error.message);
+        }
+        else {
+            console.log('payment method', paymentMethod)
+            setError('');
         }
 
+        // confirm payment
         const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: card,
                 billing_details: {
-                    email: user?.email,
-                    name: user?.displayName
+                    email: user?.email || 'anonymous',
+                    name: user?.displayName || 'anonymous'
                 }
             }
         })
+
         if (confirmError) {
-            console.log("confirm error")
-        } else {
-            console.log(paymentIntent)
+            console.log('confirm error')
+        }
+        else {
+            console.log('payment intent', paymentIntent)
+            if (paymentIntent.status === 'succeeded') {
+                console.log('transaction id', paymentIntent.id);
+                setTransactionId(paymentIntent.id);
+
+                // now save the payment in the database
+                const payment = {
+                    email,
+                    month,
+                    taka,
+                    transactionId: paymentIntent.id,
+                    date: new Date()
+                }
+
+                const res = await axiosSecure.post('/payments', payment);
+                console.log('payment saved', res.data);
+                // refetch();
+                if (res.data?.insertedId) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Thank you for the Payment taka paisa",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                }
+
+            }
         }
 
-    };
+    }
+
+
+
+
+
 
     return (
         <form className="p-5" onSubmit={handleSubmit}>
@@ -114,33 +154,3 @@ export default CheckoutForm;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// if(paymentIntent.status === 'succeeded'){
-    // setTransectionId(paymentIntent.id)
-    // const paymentsDataInfo = {
-    //     email,
-    //     month,
-    //     taka,
-    //     transectionId : paymentIntent.id,
-    //     date: new Date()
-    //     } 
