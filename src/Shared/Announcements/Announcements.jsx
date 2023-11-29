@@ -1,44 +1,50 @@
+import React, { useEffect, useState } from 'react';
+import { Card, CardContent, CardMedia, Container, Typography } from '@mui/material';
 import Lottie from 'lottie-react';
-import announce from '../../assets/announce.json'
-import { useEffect, useState } from 'react';
+import announce from '../../assets/announce.json';
 import useAxiosRandom from '../../Components/hooks/useAxiosRandom';
 
 const Announcements = () => {
+  const [announcement, setAnnouncement] = useState([]);
+  const axiosRandom = useAxiosRandom();
 
-    const [announcement, setAnnouncement] = useState()
-    const axiosRandom = useAxiosRandom()
+  useEffect(() => {
+    axiosRandom.get('/announce').then((res) => {
+      setAnnouncement(res.data);
+    });
+  }, [axiosRandom]);
 
-    useEffect(()=>{
-        axiosRandom.get('/announce')
-        .then(res =>{
-            setAnnouncement(res.data)
-        })
-    },[axiosRandom])
+  return (
+    <Container>
+      <Typography variant="h4" align="center" className="font-medium font-lora mt-8 mb-4">
+        Important Announcements from Users and Members
+      </Typography>
 
-
-    return (
-        <div>
-            <h1 className="text-4xl text-center font-medium font-lora">Improtant Announcement From Users And members Here</h1>
-
-            <div className="hero min-h-screen bg-base-200">
-                <div className="hero-content flex-col lg:flex-row-reverse">
-                    <div className="text-center lg:text-left">
-                        {
-                            announcement?.map(item => <div className='space-y-3' key={item._id}>
-                                <h1 className='text-3xl font-medium text-center '>Announcement Here</h1>
-                                    <h1 className='text-3xl font-medium'>Title : {item?.title}</h1>
-                                    <p className='text-xl font-lora'><span className='font-bold'>Description:</span> {item?.description}</p>
-                            </div>) 
-                        }
-                    </div>
-                    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                        <Lottie animationData={announce}></Lottie>
-                    </div>
-                </div>
-            </div>
-
+      <div className="flex flex-col lg:flex-row-reverse gap-4">
+        <div className="flex-1">
+          {announcement.map((item) => (
+            <Card key={item._id} elevation={3} className="mb-4">
+              <CardContent>
+                <Typography variant="h5" component="div" className="text-center mb-3">
+                  Announcement Here
+                </Typography>
+                <Typography variant="h5" component="div" className="font-medium mb-3">
+                  Title: {item?.title}
+                </Typography>
+                <Typography variant="body1" component="div" className="font-lora">
+                  <strong>Description:</strong> {item?.description}
+                </Typography>
+              </CardContent>
+            </Card>
+          ))}
         </div>
-    );
+
+        <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <Lottie animationData={announce}></Lottie>
+        </div>
+      </div>
+    </Container>
+  );
 };
 
 export default Announcements;

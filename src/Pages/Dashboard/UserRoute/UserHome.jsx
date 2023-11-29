@@ -1,50 +1,68 @@
-import useAgreement from "../../../Components/hooks/useAgreement";
-import useAuth from "../../../Components/hooks/useAuth";
 
+import { Container, Grid, Paper, Typography, Avatar } from '@mui/material';
+import useAgreement from '../../../Components/hooks/useAgreement';
+import useAuth from '../../../Components/hooks/useAuth';
 
 const UserHome = () => {
+  const { user } = useAuth();
+  const [agreement] = useAgreement();
 
-    const { user } = useAuth()
-    const [agreement] = useAgreement()
+  return (
+    <Container>
+      <Grid container justifyContent="center" alignItems="center" spacing={4} className="mb-8">
+        <Grid item xs={12} md={6}>
+          <Paper elevation={3} className="p-4 rounded-xl bg-red-200">
+            <Avatar src={user?.photoURL} alt="User Avatar" sx={{ width: '100px', height: '100px', mb: 2 }} />
+            <Typography variant="h5" component="div" className="font-medium font-lora">
+              User Name: {user?.displayName}
+            </Typography>
+            <Typography variant="h5" component="div" className="font-medium font-lora">
+              User Email: {user?.email}
+            </Typography>
+          </Paper>
+        </Grid>
+      </Grid>
 
-    // console.log(agreement)
+      <Typography variant="h2" align="center" className="text-5xl font-rancho mt-5 mb-4">
+        My All Rented Apartment Info
+      </Typography>
 
-
-    return (
-        <div>
-            <div className="w-3/4  md:flex mx-auto gap-10 items-center mb-[100px] md:mb-4 rounded-xl h-[200px] bg-red-200">
-                <div className="flex-1">
-                    <img className="h-[200px] w-full rounded-xl" src={user?.photoURL} alt="" />
-                </div>
-                <div className="flex-1 md:text-2xl space-y-3 font-medium font-lora">
-                    <h1>User Name: {user?.displayName}</h1>
-                    <h1>User Email: {user?.email}</h1>
-                </div>
-            </div>
-            <h1 className="text-5xl font-rancho text-center sm:mt-20 mb-4 md:mt-5">My All Rented Apartment Info</h1>
-            <div className="w-3/4 grid lg:grid-cols-2 sm:mt-[200px] md:mt-3 gap-5 mx-auto">
-                {
-                    agreement
-                        .filter((item) => item.status === 'pending' && user?.email === item?.userEmail)
-                        .map(agreeCard => <div key={agreeCard._id}>
-
-                            <a href="#" className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-
-                                <h5 className="mb-2 text-2xl text-success font-bold tracking-tight  dark:text-white">Rented Apartment info</h5>
-                                <p className="font-normal text-xl text-gray-700 dark:text-gray-400">Block Name: {agreeCard?.block_name}</p>
-                                <p className="font-normal text-xl text-gray-700 dark:text-gray-400">Floor No:{agreeCard?.floor_no}</p>
-                                <p className="font-normal text-xl text-gray-700 dark:text-gray-400">Room No:{agreeCard?.room_no}</p>
-                                <p className="font-normal text-xl text-gray-700 dark:text-gray-400">Apartment No:{agreeCard?.apartment_no}</p>
-                                <p className="font-normal text-xl text-gray-700 dark:text-gray-400">Agreement Date:{agreeCard?.agreement_date}</p>
-                                <p className="font-normal text-xl text-gray-700 dark:text-gray-400">Agreement Status:{agreeCard?.status}</p>
-                                <p className="font-normal text-xl text-gray-700 dark:text-gray-400">Rent Per Month:{agreeCard?.rent}</p>
-                            </a>
-
-                        </div>)
-                }
-            </div>
-        </div>
-    );
+      <Grid container spacing={4} className="mb-8">
+        {agreement
+          .filter((item) => item.status === 'pending' && user?.email === item?.userEmail)
+          .map((agreeCard) => (
+            <Grid item key={agreeCard._id} xs={12} md={6}>
+              <Paper elevation={3} className="p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
+                <Typography variant="h5" className="mb-2 text-success font-bold tracking-tight">
+                  Rented Apartment info
+                </Typography>
+                <Typography variant="body1" className="text-xl text-gray-700">
+                  Block Name: {agreeCard?.block_name}
+                </Typography>
+                <Typography variant="body1" className="text-xl text-gray-700">
+                  Floor No: {agreeCard?.floor_no}
+                </Typography>
+                <Typography variant="body1" className="text-xl text-gray-700">
+                  Room No: {agreeCard?.room_no}
+                </Typography>
+                <Typography variant="body1" className="text-xl text-gray-700">
+                  Apartment No: {agreeCard?.apartment_no}
+                </Typography>
+                <Typography variant="body1" className="text-xl text-gray-700">
+                  Agreement Date: {agreeCard?.agreement_date}
+                </Typography>
+                <Typography variant="body1" className="text-xl text-gray-700">
+                  Agreement Status: {agreeCard?.status}
+                </Typography>
+                <Typography variant="body1" className="text-xl text-gray-700">
+                  Rent Per Month: {agreeCard?.rent}
+                </Typography>
+              </Paper>
+            </Grid>
+          ))}
+      </Grid>
+    </Container>
+  );
 };
 
 export default UserHome;
