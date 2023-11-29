@@ -21,12 +21,14 @@ import UserRoute from "./UserRoute";
 import MemberRoute from "./MemberRoute";
 import UpdateCoupon from "../Pages/Dashboard/AdminRoute/UpdateCoupon";
 import PaymentHistory from "../Pages/Dashboard/MemberRoute/PaymentHistory";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",

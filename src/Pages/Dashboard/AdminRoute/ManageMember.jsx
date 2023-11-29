@@ -1,25 +1,28 @@
 import { FaTrash } from "react-icons/fa";
 import useUser from "../../../Components/hooks/useUser";
-import useAxiosRandom from "../../../Components/hooks/useAxiosRandom";
+
+import useAxiosSecure from "../../../Components/hooks/useAxiosSecure";
 
 const ManageMember = () => {
     const { User } = useUser();
-    const axiosRandom = useAxiosRandom();
+    const axiosSecure = useAxiosSecure();
 
     const handleUpdate = (id) => {
-        const updateData = {
 
+        const updateData = {
             role: 'guest'
         };
 
-        axiosRandom.put(`/users/${id}`, updateData)
-            .then(res => {
+        axiosSecure.put(`/users/${id}`, updateData)
+            .then((res) => {
                 console.log(res.data);
-                // Optionally, you can update the state or perform other actions upon a successful update.
+
             })
             .catch(error => {
                 console.error('Error updating user role:', error);
             });
+
+        console.log(id)
     };
 
     return (
