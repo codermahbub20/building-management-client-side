@@ -15,7 +15,7 @@ import Swal from "sweetalert2";
 
 const SignUp = () => {
 
-  const { createUser, signInWithGoogle, updateUserProfile} = useAuth()
+  const { createUser, signInWithGoogle, updateUserProfile,logOut} = useAuth()
   const navigate = useNavigate()
 
   // const notify = () => toast("Registration Successful!");
@@ -66,9 +66,11 @@ const SignUp = () => {
             icon: 'success',
             confirmButtonText: 'Great',
         });
-        
+        navigate('/login')
     }
-    navigate('/login')
+   
+    logOut()
+    
     } catch (err) {
       console.log(err)
       toast.error(err?.message)

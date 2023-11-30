@@ -11,7 +11,7 @@ const PrivateRoute = ({children}) => {
     console.log(user)
     
     if(loading) {
-       return <span className="loading loading-dots loading-lg"></span>
+       return <span >hhh</span>
     }
 
     if(user){

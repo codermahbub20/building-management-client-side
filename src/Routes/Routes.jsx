@@ -102,11 +102,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "payment/paymentCard",
-        element: <PaymentCard></PaymentCard>
+        element: <PrivateRoute><MemberRoute><PaymentCard></PaymentCard></MemberRoute></PrivateRoute>
       },
       {
         path: "paymentHistory",
-        element: <PaymentHistory></PaymentHistory>
+        element: <PrivateRoute><MemberRoute><PaymentHistory></PaymentHistory></MemberRoute></PrivateRoute>
       }
 
 

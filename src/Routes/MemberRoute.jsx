@@ -10,9 +10,9 @@ const MemberRoute = ({children}) => {
     const {loading} = useAuth();
     const location = useLocation()
 
-    const [roles] = useRole()
+    const [roles,isLoading] = useRole()
 
-    if(loading) {
+    if(loading || isLoading) {
        return <span className="loading loading-bars loading-lg"></span>
     }
 
