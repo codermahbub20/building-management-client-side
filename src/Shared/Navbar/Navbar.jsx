@@ -27,7 +27,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <a className="cursor-pointer"><div className="flex items-center">
-                        <img  src="/public/logo11.png" alt="" />
+                        <img  src="/logo11.png" alt="" />
                         <h1 className="text-2xl font-rancho ml-1 hidden md:block">West Cot</h1>
                     </div></a>
                 </div>
