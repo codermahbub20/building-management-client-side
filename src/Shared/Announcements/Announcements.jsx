@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Card, CardContent, CardMedia, Container, Typography } from '@mui/material';
+import  { useEffect, useState } from 'react';
+import { Card, CardContent, Container, Typography } from '@mui/material';
 import Lottie from 'lottie-react';
 import announce from '../../assets/announce.json';
 import useAxiosRandom from '../../Components/hooks/useAxiosRandom';

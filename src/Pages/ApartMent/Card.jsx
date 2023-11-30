@@ -65,7 +65,7 @@ const Card = ({ apartment }) => {
                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400"><span>Floor No: </span>{floor_no}</p>
                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400"><span>Rent: </span>{rent} TK</p>
 
-                    <button onClick={() => handleAdded(_id)} className="btn w-full">
+                    <button onClick={() => handleAdded(_id)} disabled={!user} className="btn w-full">
                         Agreement
                     </button>
                 </div>
