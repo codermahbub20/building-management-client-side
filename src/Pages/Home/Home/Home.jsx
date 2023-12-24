@@ -4,6 +4,7 @@ import Banner from "../Banner/Banner";
 import Coupon from "../Coupon/Coupon";
 import Interior from "../Interior/Interior";
 import Map from "../Map/Map";
+import Testmonial from "../Testmonial/Testmonial";
 
 
 
@@ -20,6 +21,7 @@ const Home = () => {
             <About></About>
             <Coupon></Coupon>
             <Interior></Interior>
+            <Testmonial></Testmonial>
             <Map></Map>
            
         </div>
