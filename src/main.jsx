@@ -17,6 +17,7 @@ import AuthProvider from './providers/AuthProvider.jsx';
 
 
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <div className='font-sansBalsmiq'>
@@ -28,3 +29,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </div>
   </React.StrictMode>,
 )
+
+
